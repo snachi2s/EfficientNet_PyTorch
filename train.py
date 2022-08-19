@@ -54,8 +54,9 @@ pin_memory = True
 num_workers = 32
 #modified_dataset_size = 1000
 
-""" 30_removed_files.csv acts as the labels for network. It has the filepath in it, by which the image is located in the dataset."""
-dataset = Unclearimage("train", "30_removed_files.csv", transform=transform)
+""" 30_removed_files.csv acts as the labels for network. It has the filepath in it, by which the image is located in the dataset.
+"""
+dataset = Unclearimage("train", "<file_path_of_label_in_csv>", transform=transform)
 print("Loading data...")
 #dataset.annotations = dataset.annotations[0:modified_dataset_size]
 print("dataset shape", dataset.annotations.shape)
