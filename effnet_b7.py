@@ -9,10 +9,8 @@ class modified_EfficientNet(nn.Module):
         self.model = EfficientNet.from_pretrained('efficientnet-b7')
         self.model._fc = nn.Linear(self.model._fc.in_features, 1)
         self.model._fc_2 = nn.Sequential(nn.Linear(512, 256),
-                                         nn.ReLU(),
                                          nn.BatchNorm1d(256),
                                          nn.Linear(256, 128),
-                                         nn.ReLU(),
                                          nn.BatchNorm1d(128),
                                          nn.Linear(128, 1),
                                          )
@@ -28,5 +26,6 @@ class modified_EfficientNet(nn.Module):
         x = self.model._fc(x)
         x = self.model._dropout(x)
         x = self.model._fc_2(x)
-        # x = self.model._relu(x)
+        #to neglect the negative outputs
+        x = self.model._relu(x)
         return x.squeeze(1)

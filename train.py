@@ -4,8 +4,8 @@ import torch.nn as nn
 from torch.utils.data import DataLoader
 import torchvision.transforms as transforms
 from effnet_b7 import modified_EfficientNet
-from LR_reducer import LRScheduler
-from Early_stopper import EarlyStopping
+from utils.LR_reducer import LRScheduler
+from utils.Early_stopper import EarlyStopping
 from dataset import Unclearimage
 import numpy as np
 CUDA_LAUNCH_BLOCKING = "1"
@@ -54,6 +54,7 @@ pin_memory = True
 num_workers = 32
 #modified_dataset_size = 1000
 
+""" 30_removed_files.csv acts as the labels for network. It has the filepath in it, by which the image is located in the dataset."""
 dataset = Unclearimage("train", "30_removed_files.csv", transform=transform)
 print("Loading data...")
 #dataset.annotations = dataset.annotations[0:modified_dataset_size]
